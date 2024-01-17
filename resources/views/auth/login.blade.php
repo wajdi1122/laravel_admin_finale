@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-  <form method="POST" action="tweets">
+  <form method="POST" action="{{ route('login') }}">
     @csrf
 
     <div class="login-container">
@@ -46,11 +46,12 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="password " required>
             
-            <button class="butt" type="submit"><a href="tweets">Login</button>
+            <button class="butt" type="submit"><a href="register">Login</button>
             <br>
         </form>
         <br>
-        
+        <a href="reset">Forgot password?</a>
+        <p>Don't have an account? <a href="{{ route('register') }}">Sign Up</a></p>
     </div>
   </form>
 </body>

@@ -35,7 +35,6 @@ class OrganizerContoller extends Controller
         ]);
         
         if ($request->hasFile('img')){
-            
             $file=$request->file('img');
             $ext=$file->getClientOriginalExtension();
             $filename = uniqid() . '.' . $ext ;

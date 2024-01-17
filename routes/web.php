@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-*/
+*/Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //tweets
 Route::get('/tweets',[App\Http\Controllers\TweetContoller::class , 'index']);
 Route::put('/updatetweet/{id}',[App\Http\Controllers\TweetContoller::class , 'update']);
@@ -69,4 +70,5 @@ Route::delete('/deletevideos/{id}',[App\Http\Controllers\VideoContoller::class ,
 Route::get('/', function () {
     return view('auth/login');
 });
+
 
