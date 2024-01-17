@@ -30,8 +30,23 @@ class SponsorContoller extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'img' => 'required|image|mimes:jpeg,png,jpg|max:2048', 
+        ]);
+        
+        if ($request->hasFile('img')){
+            
+            $file=$request->file('img');
+            $ext=$file->getClientOriginalExtension();
+            $filename = uniqid() . '.' . $ext ;
+            $file->storeAs('public\techph',$filename);
+            
+        }
+        else{
+            $filename="noimage.png";
+        }
         $fo=new Sponsor();
-        $fo->src=$request->src;
+        $fo->image=$filename;
         $fo->alt=$request->alt;
         $fo->order=$request->order;
         $fo->save();

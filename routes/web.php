@@ -47,19 +47,26 @@ Route::get('/authors',[App\Http\Controllers\AuthorContoller::class , 'index']);
 Route::put('/updatetauthors/{id}',[App\Http\Controllers\AuthorContoller::class , 'update']);
 Route::post('/ajouterauthors',[App\Http\Controllers\AuthorContoller::class , 'store']);
 Route::delete('/deleteauthors/{id}',[App\Http\Controllers\AuthorContoller::class , 'destroy']);
+ 
+//countie
+Route::get('/countries',[App\Http\Controllers\CountrieContoller::class , 'index']);
+Route::put('/updatetcountries/{id}',[App\Http\Controllers\CountrieContoller::class , 'update']);
+Route::post('/ajoutercountries',[App\Http\Controllers\CountrieContoller::class , 'store']);
+Route::delete('/deletecountries/{id}',[App\Http\Controllers\CountrieContoller::class , 'destroy']);
+
+//photo
+Route::get('/photos',[App\Http\Controllers\PhotoContoller::class , 'index']);
+Route::put('/updatetphotos/{id}',[App\Http\Controllers\PhotoContoller::class , 'update']);
+Route::post('/ajouterphotos',[App\Http\Controllers\PhotoContoller::class , 'store']);
+Route::delete('/deletephotos/{id}',[App\Http\Controllers\PhotoContoller::class , 'destroy']);
+
+//video
+Route::get('/videos',[App\Http\Controllers\VideoContoller::class , 'index']);
+Route::put('/updatetvideos/{id}',[App\Http\Controllers\VideoContoller::class , 'update']);
+Route::post('/ajoutervideos',[App\Http\Controllers\VideoContoller::class , 'store']);
+Route::delete('/deletevideos/{id}',[App\Http\Controllers\VideoContoller::class , 'destroy']);
 
 Route::get('/', function () {
     return view('auth/login');
 });
 
-
-
-Route::get('/countries', function () {
-    return view('admin/countries');
-});
-Route::get('/photos', function () {
-    return view('admin/photo');
-});
-Route::get('/videos', function () {
-    return view('admin/video');
-});

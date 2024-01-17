@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Organizer;
+use App\Models\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class OrganizerContoller extends Controller
+class PhotoContoller extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $Organizer=organizer::all();
-        
-        return view ('admin.organizers',compact('Organizer'));
+        $Photo=photo::all();
+        return view ('admin.photo',compact('Photo'));
     }
 
     /**
@@ -45,10 +45,10 @@ class OrganizerContoller extends Controller
         else{
             $filename="noimage.png";
         }
-
-        $fo=new Organizer();
+        $fo=new Photo();
         $fo->image=$filename;
         $fo->alt=$request->alt;
+        $fo->title=$request->title;
         $fo->order=$request->order;
         $fo->save();
         return back();
@@ -76,26 +76,34 @@ class OrganizerContoller extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'img' => 'required|image|mimes:jpeg,png,jpg|max:2048', 
+            'img' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
-        
-        if ($request->hasFile('img')){
-            
-            $file=$request->file('img');
-            $ext=$file->getClientOriginalExtension();
-            $filename = uniqid() . '.' . $ext ;
-            $file->storeAs('public\techph',$filename);
-            
+    
+        $photo = Photo::findOrFail($id);
+    
+        // Check if a new image is provided
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $ext = $file->getClientOriginalExtension();
+            $filename = uniqid() . '.' . $ext;
+            $file->storeAs('public\techph', $filename);
+    
+            // Delete the old image if it exists (not 'noimage.png')
+            if ($photo->image && $photo->image !== 'noimage.png') {
+                Storage::delete('public\techph/' . $photo->image);
+            }
+    
+            // Update the image field
+            $photo->image = $filename;
         }
-        else{
-            $filename="noimage.png";
-        }
-        $fo=Organizer::find($id);
-        $fo->image=$filename;
-        $fo->alt=$request->alt;
-        $fo->order=$request->order;
-        $fo->save();
-        return back();
+    
+        // Update other fields
+        $photo->alt = $request->alt;
+        $photo->title = $request->title;
+        $photo->order = $request->order;
+    
+        // Save the changes
+        $photo->save();
     }
 
     /**
@@ -103,7 +111,7 @@ class OrganizerContoller extends Controller
      */
     public function destroy(string $id)
     {
-        $fo=Organizer::find($id);
+        $fo=Photo::find($id);
         $fo->delete();
         return back();
     }

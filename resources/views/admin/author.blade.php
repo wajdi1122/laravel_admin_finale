@@ -76,11 +76,22 @@
                         <label for="exampleFormControlInput1" class="form-label">Organism</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" value="{{$row->organism}}" required placeholder="description" name="organism">
                       </div>
+                      <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Spiciale Session</label>
                         <select name="selectSession">
                           @foreach ($Specialsession as $ro)
                           <option value="{{$ro->id}}">{{$ro->title}}</option>
                           @endforeach
                         </select>
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Countrie</label>
+                        <select name="selectCountrie">
+                          @foreach ($Countrie as $rop)
+                          <option value="{{$rop->id}}">{{$rop->name}}</option>
+                          @endforeach
+                        </select>
+                      </div>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
@@ -126,18 +137,24 @@
           </div>
 
           <select name="selectSession">
-                          @foreach ($Specialsession as $ro)
-                          <option value="{{$ro->id}}">{{$ro->title}}</option>
-                          @endforeach
-                        </select>
+            @foreach ($Specialsession as $ro)
+            <option value="{{$ro->id}}">{{$ro->title}}</option>
+            @endforeach
+          </select>
 
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
-        <button type="submit" class="btn btn-primary">ajouter</button>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Countrie</label>
+        <select name="selectCountrie">
+          @foreach ($Countrie as $rop)
+          <option value="{{$rop->id}}">{{$rop->name}}</option>
+          @endforeach
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+            <button type="submit" class="btn btn-primary">ajouter</button>
+          </div>
+          </form>
       </div>
-      </form>
     </div>
   </div>
-</div>
-@endsection
+  @endsection

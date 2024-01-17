@@ -25,8 +25,67 @@
                            <TH>Title</TH>
                            <TH>Order</TH>
                            <TH>Action</TH>
+                           <th></th>
+                           
                       </tr>
-                    
+                  
+                      @foreach($Video as $row)
+                          <tr>
+                              <td>{{$row->id}}</td>
+                              <td>{{$row->vpayh}}</td>
+                              <td>{{$row->title}}</td>
+                              <td>{{$row->order}}</td>
+                              
+                              <td><form action="{{url('deletevideos/'.$row->id)}}" method="post">
+                                      @csrf
+                                      @method('DELETE')
+                                      <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                  </form>
+                              </td>
+                              <td>
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#up{{$row->id}}">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </button>
+                              </td>
+                          </tr>
+                  <!-- Modal -->
+                  <div class="modal fade" id="up{{$row->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Modifier organizer</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                              <form action="{{url('updatetvideos/'.$row->id)}}" method="post" enctype="multipart\data">
+                                  @csrf
+                                  @method('PUT')
+                                  <div class="mb-3">
+                                      <label for="exampleFormControlInput1" class="form-label">vpayh</label>
+                                      <input type="text" class="form-control" id="exampleFormControlInput1" 
+                                      required value="{{$row->title}}" placeholder="vpayh" name="vpayh">
+                                  </div>
+                                  
+                                  <div class="mb-3">
+                                      <label for="exampleFormControlInput1" class="form-label">title</label>
+                                      <input type="text" class="form-control" id="exampleFormControlInput1" 
+                                       value="{{$row->order}}" required placeholder="title" name="title">
+                                  </div>  
+                                  <div class="mb-3">
+                                      <label for="exampleFormControlInput1" class="form-label">order</label>
+                                      <input type="text" class="form-control" id="exampleFormControlInput1" 
+                                       value="{{$row->order}}" required placeholder="order" name="order">
+                                  </div>  
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+                          <button type="submit" class="btn btn-primary">Modifier</button>
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                      @endforeach
                  
                   </table>
             </div>
@@ -40,24 +99,29 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">ajouter une nouvelle Video </h5>
+        <h5 class="modal-title" id="exampleModalLabel">ajouter une nouvelle Organizers </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-            <form action="{{url('ajoutertech')}}" method="post" enctype="multipart/form-data">
+            <form action="{{url('ajoutervideos')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Vpath</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" required placeholder="Vpath" name="src">
+                    <input type="text" class="form-control" id="exampleFormControlInput1" required placeholder="vpath" name="vpayh">
                 </div>
+                
+                
+    
                 <div class="mb-3">
-                    <label  for="exampleFormControlInput1" class="form-label" >Title</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" required placeholder="Title" name="ord">
+                    <label  for="exampleFormControlInput1" class="form-label" >title</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" required placeholder="title" name="title">
                 </div>
+
                 <div class="mb-3">
-                    <label  for="exampleFormControlInput1" class="form-label" >Order</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" required placeholder="Order" name="ord">
+                    <label  for="exampleFormControlInput1" class="form-label" >order</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" required placeholder="order" name="order">
                 </div>
+                
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>

@@ -30,7 +30,7 @@
                       @foreach($Organizer as $row)
                           <tr>
                               <td>{{$row->id}}</td>
-                              <td>{{$row->src}}</td>
+                              <td ><img src="{{asset('storage/techph/'.$row->image)}}" alt="tech" width="50" height="50"> </td>
                               <td>{{$row->alt}}</td>
                               <td>{{$row->order}}</td>
                               
@@ -61,8 +61,8 @@
                                   @method('PUT')
                                   <div class="mb-3">
                                       <label for="exampleFormControlInput1" class="form-label">Src</label>
-                                      <input type="text" class="form-control" id="exampleFormControlInput1" 
-                                      required value="{{$row->src}}" placeholder="Link" name="src">
+                                      <input type="file" class="form-control" id="exampleFormControlInput1"  
+                                        required value="{{$row->img}}" name="img" >
                                   </div>
                                   <div class="mb-3">
                                       <label for="exampleFormControlInput1" class="form-label">Alt</label>
@@ -108,7 +108,7 @@
                 @csrf
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Src</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" required placeholder="Src" name="src">
+                    <input type="file" class="form-control" id="exampleFormControlInput1" required name="img">
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Alt</label>

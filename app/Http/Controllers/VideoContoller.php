@@ -2,22 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Author;
-use App\Models\Specialsession;
-use App\Models\Countrie;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
-class AuthorContoller extends Controller
+class VideoContoller extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $Author=author::all();
-        $Specialsession=specialsession::all();
-        $Countrie=Countrie::all();
-        return view ('admin.author',compact('Author','Specialsession','Countrie'));
+        $Video=Video::all();
+        return view ('admin.video',compact('Video'));
     }
 
     /**
@@ -33,18 +29,12 @@ class AuthorContoller extends Controller
      */
     public function store(Request $request)
     {
-        $author = new Author();
-    $author->first_name = $request->first_name;
-    $author->last_name = $request->last_name;
-    $author->organism = $request->organism;
-    $author->id_special = $request->selectSession;
-    $author->id_countries =$request->selectCountrie;
-    // Save the Author first
-    $author->save();
-
-
-
-    return back();
+        $fo=new Video();
+        $fo->vpayh=$request->vpayh;
+        $fo->title=$request->title;
+        $fo->order=$request->order;
+        $fo->save();
+        return back();
     }
 
     /**
@@ -68,12 +58,10 @@ class AuthorContoller extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $fo=Author::find($id);
-        $fo->first_name=$request->first_name;
-        $fo->last_name=$request->last_name;
-        $fo->organism=$request->organism;
-        $fo->id_special = $request->selectSession;
-        $fo->id_countries =$request->selectCountrie;
+        $fo=Video::find($id);
+        $fo->vpayh=$request->vpayh;
+        $fo->title=$request->title;
+        $fo->order=$request->order;
         $fo->save();
         return back();
     }
@@ -83,7 +71,7 @@ class AuthorContoller extends Controller
      */
     public function destroy(string $id)
     {
-        $fo=Author::find($id);
+        $fo=Video::find($id);
         $fo->delete();
         return back();
     }
