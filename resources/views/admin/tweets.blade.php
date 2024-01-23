@@ -24,6 +24,7 @@
                             <TH>Link</TH>
                             <TH>Date</TH>
                           <TH>Action</TH>
+                          <th></th>
                       </tr>
                     @foreach($Tweet as $row)
                           <tr>

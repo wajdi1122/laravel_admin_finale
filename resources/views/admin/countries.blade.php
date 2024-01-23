@@ -86,7 +86,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-            <form action="{{url('ajoutertech')}}" method="post" enctype="multipart/form-data">
+            <form action="{{url('ajoutercountries')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Name</label>

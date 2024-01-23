@@ -66,6 +66,10 @@ Route::get('/videos',[App\Http\Controllers\VideoContoller::class , 'index']);
 Route::put('/updatetvideos/{id}',[App\Http\Controllers\VideoContoller::class , 'update']);
 Route::post('/ajoutervideos',[App\Http\Controllers\VideoContoller::class , 'store']);
 Route::delete('/deletevideos/{id}',[App\Http\Controllers\VideoContoller::class , 'destroy']);
+//users
+Route::get('/users',[App\Http\Controllers\UserAdminController::class , 'index']);
+Route::put('/updatetusers/{id}',[App\Http\Controllers\UserAdminController::class , 'update']);
+Route::delete('/deleteusers/{id}',[App\Http\Controllers\UserAdminController::class , 'destroy']);
 
 Route::get('/', function () {
     return view('auth/login');

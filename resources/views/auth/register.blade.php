@@ -10,7 +10,7 @@
 <style>
     body{
     background-size: cover;
-      background-image : url('img/app/img2.jpg');
+      background-image : url('img/app/loginback.jpg');
       background-repeat: no-repeat;
       background-blend-mode:darken ;
       font-family: "Open Sans", sans-serif;
@@ -100,10 +100,10 @@ line-height: 10PX;}
 
             
             <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Your password " name="password" required>
+            <input type="password" id="password" placeholder="Your password" name="password" required>
             
             <label for="conf-password"> Confirm Password</label>
-            <input type="password" id="password-confirm" name="password-confirmation" required>
+            <input type="password" id="password-confirm" placeholder="Repeat Your password" name="password-confirmation" required>
 
             <div class="form-check">
                <p style="margin-right:250px"> <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required> <p>

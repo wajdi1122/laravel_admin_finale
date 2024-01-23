@@ -26,6 +26,7 @@
                            <TH>Description</TH>
                            <TH>Web Site</TH>
                            <TH>Action</TH>
+                           <TH></TH>
                       </tr>
                       @foreach($Keynote as $row)
                           <tr>

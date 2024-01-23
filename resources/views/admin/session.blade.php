@@ -25,6 +25,7 @@
                             <TH>Description</TH>
                            <TH>Order</TH>
                            <TH>Action</TH>
+                           <TH></TH>
                       </tr>
                       @foreach($Specialsession as $row)
                           <tr>
@@ -103,7 +104,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-            <form action="{{url('ajouterphotos')}}" method="post" enctype="multipart/form-data">
+            <form action="{{url('ajoutersession')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Titre</label>

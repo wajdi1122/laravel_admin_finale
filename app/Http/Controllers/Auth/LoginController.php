@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -37,11 +38,24 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function authenticate() {
-        if (Auth::attempt(['email' => $email, 'password' => $password])) {
-        
-           // Authentication passed...
-           return redirect()->intended('dashboard');
+    public function login (Request $request)
+    {
+        $input = $request->all();
+
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (auth()->attempt(['email' => $input['email'], 'password' => $input['password']])) {
+            $user = auth()->user();
+            if ($user->status == 1) {
+                return redirect()->route('home');
+            } else {
+                auth()->logout(); // Log out the user
+                return redirect()->route('login')->with('error', 'Your account is inactive.');
+            }
         }
-}
+        return redirect()->route('login')->with('error', 'Email-Address and Password are wrong.');
+    }
 }

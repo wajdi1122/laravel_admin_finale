@@ -27,6 +27,7 @@
               <TH>Countrie</TH>
               <TH>Special Session</TH>
               <TH>Action</TH>
+              <th></th>
             </tr>
 
             @foreach($Author as $row)
@@ -78,7 +79,7 @@
                       </div>
                       <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Spiciale Session</label>
-                        <select name="selectSession">
+                        <select name="selectSession" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                           @foreach ($Specialsession as $ro)
                           <option value="{{$ro->id}}">{{$ro->title}}</option>
                           @endforeach
@@ -86,7 +87,7 @@
                       </div>
                       <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Countrie</label>
-                        <select name="selectCountrie">
+                        <select name="selectCountrie" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                           @foreach ($Countrie as $rop)
                           <option value="{{$rop->id}}">{{$rop->name}}</option>
                           @endforeach
@@ -129,32 +130,35 @@
             <label for="exampleFormControlInput1" class="form-label">Last Name</label>
             <input type="text" class="form-control" id="exampleFormControlInput1" required placeholder="Last Name" name="last_name">
           </div>
-
-
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Organism</label>
             <input type="text" class="form-control" id="exampleFormControlInput1" required placeholder="Organism" name="organism">
           </div>
-
-          <select name="selectSession">
+          <label for="exampleFormControlInput1" class="form-label">special session</label>
+          <select name="selectSession" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
             @foreach ($Specialsession as $ro)
-            <option value="{{$ro->id}}">{{$ro->title}}</option>
+              <option value="{{$ro->id}}">{{$ro->title}}</option>
             @endforeach
           </select>
 
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Countrie</label>
-        <select name="selectCountrie">
-          @foreach ($Countrie as $rop)
-          <option value="{{$rop->id}}">{{$rop->name}}</option>
-          @endforeach
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
-            <button type="submit" class="btn btn-primary">ajouter</button>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Countrie</label>
+            <select name="selectCountrie" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+              @foreach ($Countrie as $rop)
+                <option value="{{$rop->id}}">{{$rop->name}}</option>
+              @endforeach
+            </select>
           </div>
-          </form>
-      </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+          <button type="submit" class="btn btn-primary">ajouter</button>
+        </div>
+      </form>
     </div>
   </div>
-  @endsection
+</div>
+</div>
+
+@endsection

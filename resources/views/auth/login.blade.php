@@ -10,7 +10,7 @@
 <style>
     body{
     background-size: cover;
-      background-image : url('img/app/img2.jpg');
+      background-image : url('img/app/loginback.jpg');
       background-repeat: no-repeat;
       background-blend-mode:darken ;
       font-family: "Open Sans", sans-serif;
@@ -21,22 +21,18 @@
 <body>
   <form method="POST" action="{{ route('login') }}">
     @csrf
-
     <div class="login-container">
-        <label>
-            <input class="toggle-checkbox" type="checkbox">
-            <div class="toggle-slot">
-              <div class="sun-icon-wrapper">
-                <div class="iconify sun-icon" data-icon="feather-sun" data-inline="false"></div>
-              </div>
-              <div class="toggle-button" ></div>
-              <div class="moon-icon-wrapper">
-                
-                <div class="iconify moon-icon" data-icon="feather-moon" data-inline="false"></div>
-              </div>
+    @if(session('error'))
+    <div class="row" id="proBanner">
+            <div class="col-12 alert alert-danger">
+              <span class="d-flex align-items-center purchase-popup">
+                <p class="alert alert-danger">{{session('error')}}</p>
+                <i class="mdi mdi-close" id="bannerClose"></i>
+              </span>
             </div>
-          </label>
-          
+          </div>
+  @endif
+       
         
         <h2>Login to Your Account</h2>
         <form>
@@ -46,7 +42,7 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="password " required>
             
-            <button class="butt" type="submit"><a href="register">Login</button>
+            <button class="butt" type="submit">Login</button>
             <br>
         </form>
         <br>
